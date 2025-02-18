@@ -203,7 +203,7 @@ h4 {
   letter-spacing: 1px;
 }
 
-.icon:hover {
+.btn:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
@@ -260,18 +260,13 @@ h4 {
   opacity: 0;
   transition: all 0.3 ease-in-out;
 }
-/* .slide.current {
+.slide.current {
   opacity: 1;
   transform: translateX(0);
 }
 .slide.last {
-  opacity: 1;
-
   transform: translateX(-100%);
 }
 .slide.next {
   transform: translateX(100%);
-} */
-.current {
-  opacity: 1;
 }

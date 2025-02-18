@@ -29,30 +29,36 @@ container.innerHTML = people
   })
   .join("");
 
-let slides = [...document.querySelectorAll(".slide")];
+nextBtn.addEventListener("click", (type) => startSlider());
 
-nextBtn.addEventListener("click", nextSlide);
-prevBtn.addEventListener("click", prevSlide);
+prevBtn.addEventListener("click", (type) => startSlider("prev"));
 
-function nextSlide() {
-  let currentIndex = slides.findIndex((person) =>
-    person.classList.contains("current")
-  );
-  slides[currentIndex].classList.remove("current");
-  if (currentIndex === people.length - 1) {
-    slides[0].classList.add("current");
-  } else {
-    slides[currentIndex + 1].classList.add("current");
+const startSlider = (type) => {
+  const current = document.querySelector(".current");
+  const last = document.querySelector(".last");
+  let next = current.nextElementSibling;
+  console.log(next);
+  if (!next) {
+    next = container.firstElementChild;
   }
-}
-function prevSlide() {
-  let currentIndex = slides.findIndex((person) =>
-    person.classList.contains("current")
-  );
-  slides[currentIndex].classList.remove("current");
-  if (currentIndex === 0) {
-    slides[people.length - 1].classList.add("current");
-  } else {
-    slides[currentIndex - 1].classList.add("current");
+  current.classList.remove("current");
+  next.classList.remove("next");
+  last.classList.remove("last");
+  console.log(current);
+
+  if (type === "prev") {
+    current.classList.add("next");
+    last.classList.add("current");
+    next = last.previousElementSibling;
+    if (!next) {
+      next = container.lastElementChild;
+    }
+    next.classList.remove("next");
+    next.classList.add("last");
+    return;
   }
-}
+
+  current.classList.add("last");
+  next.classList.add("current");
+  last.classList.add("next");
+};
